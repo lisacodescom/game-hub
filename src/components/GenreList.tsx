@@ -4,8 +4,9 @@ import  useGenres,{ Genre }from '../hooks/useGenres'
 
 interface GenreProps{
   onSelectedGenre: (genre:Genre)=>void
+  selectedGenre: Genre | null
 }
-const GenreList = ({onSelectedGenre}:GenreProps) => {
+const GenreList = ({onSelectedGenre,selectedGenre}:GenreProps) => {
     const {data, loading,error}=useGenres()
 
     if(loading) return <Spinner/>
@@ -16,7 +17,7 @@ const GenreList = ({onSelectedGenre}:GenreProps) => {
         {data.map((genre)=><ListItem key={genre.id} paddingY= '5px'>
           <HStack>
             <Image src={getCroppedImageUrl(genre.image_background)} alt={genre.name} boxSize='32px' borderRadius={8}/>
-            <Button onClick={()=>onSelectedGenre(genre)} variant={'link'}>{genre.name}</Button>
+            <Button fontWeight={genre.id === selectedGenre?.id? 'bold': 'normal'} onClick={()=>onSelectedGenre(genre)} variant={'link'}>{genre.name}</Button>
           </HStack>
           </ListItem>)}
     </List>
