@@ -2,6 +2,7 @@ import getCroppedImageUrl  from '../services/image-url'
 import { Button, HStack, Heading, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react'
 import  useGenres,{ Genre }from '../hooks/useGenres'
 
+
 interface GenreProps{
   onSelectedGenre: (genre:Genre)=>void
   selectedGenre: Genre | null
